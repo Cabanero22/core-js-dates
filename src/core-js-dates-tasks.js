@@ -160,13 +160,6 @@ function isDateInPeriod(date, period) {
  */
 function formatDate(date) {
   const newDate = new Date(date);
-  const years = newDate.getFullYear();
-  const month = newDate.getMonth();
-  const day = newDate.getDate();
-  const hours = newDate.getHours();
-  const minutes = newDate.getMinutes();
-  const seconds = newDate.getSeconds();
-  const resultDate = new Date(years, month, day, hours, minutes, seconds);
   const options = {
     year: 'numeric',
     month: 'numeric',
@@ -177,7 +170,7 @@ function formatDate(date) {
     hour12: true,
     timeZone: 'UTC',
   };
-  return new Intl.DateTimeFormat('en-US', options).format(resultDate);
+  return new Intl.DateTimeFormat('en-US', options).format(newDate);
 }
 
 /**
@@ -193,7 +186,24 @@ function formatDate(date) {
  * 1, 2024 => 8
  */
 function getCountWeekendsInMonth(month, year) {
-  throw new Error('Not implemented');
+  const weekend = [6, 0];
+  let count = 0;
+  const day = 24 * 3600 * 1000;
+  const correctMonth = month - 1;
+  const date = new Date(year, correctMonth);
+  const dayStamp = Date.parse(date);
+  for (let i = dayStamp; i < dayStamp + 31 * day; i += day) {
+    const currentDate = new Date(i);
+    const currentMonth = currentDate.getMonth();
+    if (
+      (currentDate.getDay() === weekend[0] ||
+        currentDate.getDay() === weekend[1]) &&
+      currentMonth === correctMonth
+    ) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 /**
