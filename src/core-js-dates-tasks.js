@@ -98,10 +98,7 @@ function getNextFriday(date) {
  * 2, 2024 => 29
  */
 function getCountDaysInMonth(month, year) {
-  const date = new Date(year, month);
-  const options = { day: 'numeric', timeZone: 'UTC' };
-  const maxDays = +new Intl.DateTimeFormat('en-US', options).format(date);
-  return maxDays;
+  return new Date(year, month, 0).getDate();
 }
 
 /**
