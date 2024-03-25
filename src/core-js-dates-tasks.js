@@ -83,7 +83,7 @@ function getNextFriday(date) {
       result = new Date(day);
     }
   });
-  return result;
+  return friday;
 }
 
 /**
@@ -243,7 +243,6 @@ function getWeekNumberByDate(date) {
 function getNextFridayThe13th(/* date */) {
   throw new Error('Not implemented');
 }
-
 /**
  * Returns the quarter of the year for a given date.
  *
