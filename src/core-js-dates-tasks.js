@@ -237,8 +237,16 @@ function getWeekNumberByDate(date) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  const dayStamp = Date.parse(date);
+  const oneDay = 24 * 3600 * 1000;
+  const resultDate = [];
+  for (let i = dayStamp; i <= dayStamp + oneDay * 366; i += oneDay) {
+    if (new Date(i).getDate() === 13 && new Date(i).getDay() === 5) {
+      resultDate.push(new Date(i));
+    }
+  }
+  return resultDate[0];
 }
 /**
  * Returns the quarter of the year for a given date.
