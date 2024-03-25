@@ -83,7 +83,6 @@ function getNextFriday(date) {
       result = new Date(day);
     }
   });
-  result = 'check';
   return result;
 }
 
